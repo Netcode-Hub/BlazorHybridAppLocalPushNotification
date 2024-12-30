@@ -1,0 +1,19 @@
+﻿@page "/"
+@using Plugin.LocalNotification
+@inject INotificationService notificationService
+
+<button class="btn btn-info" @onclick="NotifyUser">Notify</button>
+
+@code {
+    void NotifyUser()
+    {
+        notificationService.Show(new NotificationRequest
+            {
+                NotificationId = 1,
+                Title = "Netcode-Hub Subscription",
+                Description = "Kindly do that",
+                Schedule = new NotificationRequestSchedule
+                { NotifyTime = DateTime.Now.AddSeconds(10) }
+            });
+    }
+}
